@@ -1,11 +1,118 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mikor lesz kolibuli?</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mikor lesz kolibuli?</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      animation: neon-bg 5s infinite alternate;
+    }
+
+    h1, h3, h2 {
+      margin: 10px;
+      color: white;
+    }
+
+    .kolibuli-datum {
+      font-size: 2em;
+      font-weight: bold;
+      color: #fff;
+      animation: neon-shadow 1.5s infinite alternate;
+    }
+
+    /* Háttér villogás */
+    @keyframes neon-bg {
+      0% { background-color: #ff00ff; }
+      25% { background-color: #00ffff; }
+      50% { background-color: #ff9900; }
+      75% { background-color: #00ff00; }
+      100% { background-color: #ff0000; }
+    }
+
+    /* Neon szöveg shadow villogás */
+    @keyframes neon-shadow {
+      0% { text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff; }
+      50% { text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff; }
+      100% { text-shadow: 0 0 10px #ff9900, 0 0 30px #ff9900; }
+    }
+
+    /* Képek körben */
+    .image-container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin-top: 30px;
+    }
+
+    .image-container img {
+      position: absolute;
+      animation: rotate-img 3s infinite alternate ease-in-out;
+    }
+
+    .img-top    { top: 0; left: 50%; transform: translateX(-50%); }
+    .img-right  { right: 0; top: 50%; transform: translateY(-50%); }
+    .img-bottom { bottom: 0; left: 50%; transform: translateX(-50%); }
+    .img-left   { left: 0; top: 50%; transform: translateY(-50%); }
+
+    @keyframes rotate-img {
+      0% { transform: rotate(-45deg); }
+      100% { transform: rotate(45deg); }
+    }
+  </style>
 </head>
 <body>
-    <h1>Mikor lesz kolibuli?</h1>
+  <h1>Mikor lesz kolibuli?</h1>
+  <h3 class="kolibuli-info">A következő koli buli időpontja még egyeztetés alatt áll.</h3>
+  <h3 class="kolibuli-info">Legnagyobb eséllyel koli bulit legközelebb az Orientációs Hét záróbulijaként tartunk;</h3>
+  <h3 class="kolibuli-info">Valószínűsíthető időpont:</h3>
+  <h3 class="kolibuli-datum">2025.09.03, szerda</h3>
+  <h3 class="kolibuli-info">Tervezett kezdés: az eredményhirdetés után</h3>
+  
+  <!-- Visszaszámláló -->
+  <h2 id="visszaszamlalo"></h2>
+
+  <!-- Képek a szöveg körül -->
+  <div class="image-container">
+    <img src="img/kevert.png" class="img-top" alt="kép felül">
+    <img src="https://via.placeholder.com/80" class="img-right" alt="kép jobbra">
+    <img src="https://via.placeholder.com/80" class="img-bottom" alt="kép alul">
+    <img src="https://via.placeholder.com/80" class="img-left" alt="kép balra">
+  </div>
+
+  <script>
+    // Cél dátum (2025.09.03 20:00 például, eredményhirdetés után)
+    const targetDate = new Date("2025-09-03T20:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        document.getElementById("visszaszamlalo").innerHTML = "A buli elkezdődött! 🎉";
+        clearInterval(countdownInterval);
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById("visszaszamlalo").innerHTML = 
+        `Hátralévő idő: ${days} nap ${hours} óra ${minutes} perc ${seconds} másodperc`;
+    }
+
+    const countdownInterval = setInterval(updateCountdown, 1000);
+    updateCountdown(); // első futtatás azonnal
+  </script>
 </body>
 </html>
