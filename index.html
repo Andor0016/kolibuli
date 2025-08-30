@@ -6,24 +6,25 @@
   <title>Mikor lesz kolibuli?</title>
   <style>
     body {
-      margin: 5rem;
+      margin: 0;
       height: 100vh;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       font-family: Arial, sans-serif;
       animation: neon-bg 5s infinite alternate;
+    }
+
+    .content-box {
       position: relative;
-      overflow: hidden;
+      padding: 10rem 15rem;
+      z-index: 2;
     }
 
     h1, h3, h2 {
       margin: 10px;
       color: white;
-      z-index: 2;
-      position: relative;
     }
 
     .kolibuli-datum {
@@ -49,7 +50,7 @@
       100% { text-shadow: 0 0 10px #ff9900, 0 0 30px #ff9900; }
     }
 
-    /* Képek a sarkokban */
+    /* Képek a szöveg körül */
     .corner-img {
       position: absolute;
       max-width: 18rem;
@@ -60,10 +61,10 @@
       z-index: 1;
     }
 
-    .img-top-left    { top: 10px; left: 10px; }
-    .img-top-right   { top: 10px; right: 10px; }
-    .img-bottom-left { bottom: 10px; left: 10px; }
-    .img-bottom-right{ bottom: 10px; right: 10px; }
+    .img-top-left    { top: -1rem; left: -1rem; }
+    .img-top-right   { top: -1rem; right: -1rem; }
+    .img-bottom-left { bottom: -1rem; left: -1rem; }
+    .img-bottom-right{ bottom: -1rem; right: -1rem; }
 
     @keyframes rotate-img {
       0% { transform: rotate(-45deg); }
@@ -72,25 +73,27 @@
   </style>
 </head>
 <body>
-  <h1>Mikor lesz kolibuli?</h1>
-  <h3 class="kolibuli-info">A következő koli buli időpontja még egyeztetés alatt áll.</h3>
-  <h3 class="kolibuli-info">Legnagyobb eséllyel koli bulit legközelebb az Orientációs Hét záróbulijaként tartunk;</h3>
-  <h3 class="kolibuli-info">Valószínűsíthető időpont:</h3>
-  <h3 class="kolibuli-datum">2025.09.03, szerda</h3>
-  <h3 class="kolibuli-info">Tervezett kezdés: az eredményhirdetés után</h3>
-  
-  <!-- Visszaszámláló -->
-  <h2 id="visszaszamlalo"></h2>
+  <div class="content-box">
+    <h1>Mikor lesz kolibuli?</h1>
+    <h3 class="kolibuli-info">A következő koli buli időpontja még egyeztetés alatt áll.</h3>
+    <h3 class="kolibuli-info">Legnagyobb eséllyel koli bulit legközelebb az Orientációs Hét záróbulijaként tartunk;</h3>
+    <h3 class="kolibuli-info">Valószínűsíthető időpont:</h3>
+    <h3 class="kolibuli-datum">2025.09.03, szerda</h3>
+    <h3 class="kolibuli-info">Tervezett kezdés: az eredményhirdetés után (23:00 körü)</h3>
+    
+    <!-- Visszaszámláló -->
+    <h2 id="visszaszamlalo"></h2>
 
-  <!-- Képek a sarkokban -->
-  <img src="img/djdzsi.png" class="corner-img img-top-left" alt="kép bal felső sarokban">
-  <img src="img/sorbor.png" class="corner-img img-top-right" alt="kép jobb felső sarokban">
-  <img src="img/mora.png" class="corner-img img-bottom-left" alt="kép bal alsó sarokban">
-  <img src="img/kevert.png" class="corner-img img-bottom-right" alt="kép jobb alsó sarokban">
+    <!-- Képek a szöveg körül -->
+    <img src="img/djdzsi.png" class="corner-img img-top-left" alt="kép bal felső sarokban">
+    <img src="img/sorbor.png" class="corner-img img-top-right" alt="kép jobb felső sarokban">
+    <img src="img/mora.png" class="corner-img img-bottom-left" alt="kép bal alsó sarokban">
+    <img src="img/kevert.png" class="corner-img img-bottom-right" alt="kép jobb alsó sarokban">
+  </div>
 
   <script>
     // Cél dátum (2025.09.03 20:00 például, eredményhirdetés után)
-    const targetDate = new Date("2025-09-03T20:00:00").getTime();
+    const targetDate = new Date("2025-09-03T23:00:00").getTime();
 
     function updateCountdown() {
       const now = new Date().getTime();
