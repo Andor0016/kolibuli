@@ -6,7 +6,7 @@
   <title>Mikor lesz kolibuli?</title>
   <style>
     body {
-      margin: 0;
+      margin: 5rem;
       height: 100vh;
       display: flex;
       flex-direction: column;
@@ -15,11 +15,15 @@
       text-align: center;
       font-family: Arial, sans-serif;
       animation: neon-bg 5s infinite alternate;
+      position: relative;
+      overflow: hidden;
     }
 
     h1, h3, h2 {
       margin: 10px;
       color: white;
+      z-index: 2;
+      position: relative;
     }
 
     .kolibuli-datum {
@@ -45,23 +49,21 @@
       100% { text-shadow: 0 0 10px #ff9900, 0 0 30px #ff9900; }
     }
 
-    /* Képek körben */
-    .image-container {
-      position: relative;
-      width: 300px;
-      height: 300px;
-      margin-top: 30px;
-    }
-
-    .image-container img {
+    /* Képek a sarkokban */
+    .corner-img {
       position: absolute;
+      max-width: 18rem;
+      max-height: 18rem;
+      width: auto;
+      height: auto;
       animation: rotate-img 3s infinite alternate ease-in-out;
+      z-index: 1;
     }
 
-    .img-top    { top: 0; left: 50%; transform: translateX(-50%); }
-    .img-right  { right: 0; top: 50%; transform: translateY(-50%); }
-    .img-bottom { bottom: 0; left: 50%; transform: translateX(-50%); }
-    .img-left   { left: 0; top: 50%; transform: translateY(-50%); }
+    .img-top-left    { top: 10px; left: 10px; }
+    .img-top-right   { top: 10px; right: 10px; }
+    .img-bottom-left { bottom: 10px; left: 10px; }
+    .img-bottom-right{ bottom: 10px; right: 10px; }
 
     @keyframes rotate-img {
       0% { transform: rotate(-45deg); }
@@ -80,13 +82,11 @@
   <!-- Visszaszámláló -->
   <h2 id="visszaszamlalo"></h2>
 
-  <!-- Képek a szöveg körül -->
-  <div class="image-container">
-    <img src="img/kevert.png" class="img-top" alt="kép felül">
-    <img src="https://via.placeholder.com/80" class="img-right" alt="kép jobbra">
-    <img src="https://via.placeholder.com/80" class="img-bottom" alt="kép alul">
-    <img src="https://via.placeholder.com/80" class="img-left" alt="kép balra">
-  </div>
+  <!-- Képek a sarkokban -->
+  <img src="img/djdzsi.png" class="corner-img img-top-left" alt="kép bal felső sarokban">
+  <img src="img/sorbor.png" class="corner-img img-top-right" alt="kép jobb felső sarokban">
+  <img src="img/mora.png" class="corner-img img-bottom-left" alt="kép bal alsó sarokban">
+  <img src="img/kevert.png" class="corner-img img-bottom-right" alt="kép jobb alsó sarokban">
 
   <script>
     // Cél dátum (2025.09.03 20:00 például, eredményhirdetés után)
