@@ -7,7 +7,7 @@
   <style>
     body {
       margin: 0;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -18,12 +18,12 @@
 
     .content-box {
       position: relative;
-      padding: 10rem 15rem;
+      padding: 10rem 15rem; /* Desktop padding */
       z-index: 2;
     }
 
-    h1, h3, h2 {
-      margin: 10px;
+    h1, h2, h3 {
+      margin: 10px 0;
       color: white;
     }
 
@@ -70,6 +70,52 @@
       0% { transform: rotate(-45deg); }
       100% { transform: rotate(45deg); }
     }
+
+    /* Mobil nézet */
+    @media (max-width: 1024px) {
+      .content-box {
+        padding: 5rem 7rem;
+      }
+
+      .kolibuli-datum { font-size: 1.8em; }
+      h1 { font-size: 1.8em; }
+      h2, h3 { font-size: 1em; }
+
+      .corner-img {
+        max-width: 10rem;
+        max-height: 10rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .content-box {
+        padding: 3rem 2rem;
+      }
+
+      .kolibuli-datum { font-size: 1.5em; }
+      h1 { font-size: 1.5em; }
+      h2, h3 { font-size: 0.95em; }
+
+      .corner-img {
+        max-width: 8rem;
+        max-height: 8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .content-box {
+        padding: 2rem 1rem;
+      }
+
+      .kolibuli-datum { font-size: 1.2em; }
+      h1 { font-size: 1.2em; }
+      h2, h3 { font-size: 0.9em; }
+
+      .corner-img {
+        max-width: 6rem;
+        max-height: 6rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -84,7 +130,7 @@
     <!-- Visszaszámláló -->
     <h2 id="visszaszamlalo"></h2>
 
-    <!-- Képek a szöveg körül -->
+    <!-- Képek -->
     <img src="img/djdzsi.png" class="corner-img img-top-left" alt="kép bal felső sarokban">
     <img src="img/sorbor.png" class="corner-img img-top-right" alt="kép jobb felső sarokban">
     <img src="img/mora.png" class="corner-img img-bottom-left" alt="kép bal alsó sarokban">
@@ -92,7 +138,6 @@
   </div>
 
   <script>
-    // Cél dátum (2025.09.03 20:00 például, eredményhirdetés után)
     const targetDate = new Date("2025-09-03T23:00:00").getTime();
 
     function updateCountdown() {
@@ -115,7 +160,7 @@
     }
 
     const countdownInterval = setInterval(updateCountdown, 1000);
-    updateCountdown(); // első futtatás azonnal
+    updateCountdown();
   </script>
 </body>
 </html>
